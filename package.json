@@ -1,0 +1,11 @@
+{
+  "name": "testas-watcher",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Watches TestAS test-center availability for a fixed date and school list, and notifies via Telegram + email when a slot opens.",
+  "main": "check.js",
+  "scripts": {
+    "test": "node --test",
+    "check": "node check.js"
+  }
+}
