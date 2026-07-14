@@ -8,6 +8,10 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: testas-watcher
+  cancel-in-progress: false
+
 jobs:
   check:
     runs-on: ubuntu-latest

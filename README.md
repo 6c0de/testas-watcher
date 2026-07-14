@@ -39,8 +39,21 @@ GitHub Actions every 5 minutes, for free — no server of your own required.
 `check.js` scrapes the live page, compares it against `state.json` (committed
 in this repo), and only sends a notification the moment a school flips from
 `closed` to `open` — it will not spam you every 5 minutes while a slot
-happens to stay open, and it will not re-alert if it closes and reopens
-later (that counts as a new transition and does alert again).
+happens to stay open. It *will* alert again if a slot later closes and
+reopens, since that counts as a brand new transition.
+
+## Why is there a `HEARTBEAT.md` file?
+
+GitHub Actions automatically disables a scheduled workflow in a public repo
+after 60 days with no commit activity. Since this watcher only commits
+`state.json` when a school's status actually changes, a long quiet stretch
+(both schools staying "closed" for months, which is expected before the exam
+date) could otherwise get the 5-minute schedule silently disabled — the
+worst possible failure for a tool whose whole job is not missing a rare
+event. A second, separate workflow (`.github/workflows/heartbeat.yml`)
+commits an updated timestamp into `HEARTBEAT.md` once a month, well under
+the 60-day limit, purely to keep the repository "active" so the real
+5-minute schedule keeps running.
 
 ## Changing what's being watched
 
