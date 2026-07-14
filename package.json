@@ -9,6 +9,7 @@
     "check": "node check.js"
   },
   "dependencies": {
-    "nodemailer": "^9.0.3"
+    "nodemailer": "^9.0.3",
+    "playwright": "^1.61.1"
   }
 }
